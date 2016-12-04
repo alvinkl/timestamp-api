@@ -4,7 +4,6 @@ const moment = require('moment');
 
 router.get('/', (req, res) => {
   res.render('index');
-  // console.log(moment.isDate(new Date('December 15, 2015')))
 });
 
 router.get('/:time', (req, res) => {
@@ -13,16 +12,16 @@ router.get('/:time', (req, res) => {
 
   if (!isNaN(time)) {
     result.unix = time;
-    result.date = moment.unix(time).format('MMMM DD, YYYY');
+    result.natural = moment.unix(time).format('MMMM DD, YYYY');
   }
   else {
-    if (moment.isDate(new Date(time))) {
-      result.unix = moment(new Date(time)).format('X');
-      result.date = time;
+    if (moment(time).isValid()) {
+      result.unix = moment(time).format('X');
+      result.natural = time;
     }
     else {
       result.unix = null;
-      result.date = null;
+      result.natural = null;
     }
   }
   res.json(result);
