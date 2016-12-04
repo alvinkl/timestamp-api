@@ -1,9 +1,9 @@
-var express = require('express');
-var path = require('path');
+const express = require('express');
+const path = require('path');
 
 const routes = require('./routes/index');
 
-var app = express();
+const app = express();
 
 /* View Engine Setup */
 app.set('views', path.join(__dirname, 'views'));
